@@ -60,16 +60,16 @@ pipeline {
 			steps {
 				echo 'Add SSH key'
 				sshagent(credentials: ['ec2-ssh-key']) {
-					sh '''
+					sh """
 							ssh-keyscan -t ed25519 ${EC2_HOST} >> ~/.ssh/known_hosts
 							
-							ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} << EOF
+							ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} << 'EOF'
 								docker stop awscicd || true
 								docker rm awscicd || true
 								docker pull ${DOCKER_IMAGE}:${DOCKER_TAG}
 								docker run --name awscicd -it -d -p 9090:9090 ${DOCKER_IMAGE}:${DOCKER_TAG}
 							EOF
-						 '''
+						 """
 				}
 			}
 		}
