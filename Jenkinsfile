@@ -58,6 +58,7 @@ pipeline {
 		stage('Docker Compose Down') {
 			steps {
 				echo 'docker-compose down'
+				sh "cd ~/app"
 				sh "docker compose -f ${COMPOSE_FILE} down || true"
 			}
 		}
