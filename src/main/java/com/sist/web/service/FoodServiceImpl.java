@@ -20,6 +20,8 @@ public class FoodServiceImpl implements FoodService {
 
 	@Override
 	public ListDataDTO<FoodVO> foodListData(int page) {
+		if (page < 1)
+			page = 1;
 		List<FoodVO> list = mapper.foodListData(getOffSet(page));
 		int totalpage = mapper.foodTotalPage();
 		ListDataDTO<FoodVO> dto = new ListDataDTO<>(list, page, totalpage);
@@ -29,6 +31,8 @@ public class FoodServiceImpl implements FoodService {
 
 	@Override
 	public ListDataDTO<FoodVO> foodFindData(int page, String address) {
+		if (page < 1)
+			page = 1;
 		List<FoodVO> list = mapper.foodFindData(getOffSet(page), address);
 		int totalpage = mapper.foodFindTotalPage(address);
 		ListDataDTO<FoodVO> dto = new ListDataDTO<>(list, page, totalpage);
