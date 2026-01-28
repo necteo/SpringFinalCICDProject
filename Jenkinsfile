@@ -56,6 +56,18 @@ pipeline {
 			}
 		}
 		
+		stage('Add SSH key') {
+			steps {
+				echo 'Add SSH key'
+				sshagent(credentials: ['ec2-ssh-key]') {
+					sh '''
+							ssh-keyscan -t ed25519 3.234.226.241 >> ~/.ssh/known_hosts
+							chmod 644 ~/.ssh/known_hosts
+						 '''
+				}
+			}
+		}
+		
 		stage('Deploy to EC2') {
 			steps {
 				echo 'Deploy to EC2'
