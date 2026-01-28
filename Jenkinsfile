@@ -80,7 +80,7 @@ pipeline {
 						
 						docker run --name ${CONTAINER_NAME} -it -d -p 9090:9090 ${DOCKER_IMAGE}
 					 '''
-			}
+			} 
 		}*/
 	}
 	
