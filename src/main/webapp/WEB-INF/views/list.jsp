@@ -18,6 +18,11 @@
 h3 {
 	text-align: center
 }
+p {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 </style>
 </head>
 <body>

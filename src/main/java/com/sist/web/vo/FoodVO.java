@@ -1,4 +1,7 @@
 package com.sist.web.vo;
+
+import lombok.Data;
+
 /*
  * 	  controller : 화면 연결 => 브라우저에서 화면 제어
  * 	  restcontroller : 다른 프로그램 연동
@@ -71,6 +74,11 @@ package com.sist.web.vo;
  *   ----------------------------
  *   docker / docker-compose
  */
+@Data
 public class FoodVO {
+	
+	private int fno, hit;
+	private String name, type, phone, address, theme, price, time, parking, poster, images, content;
+	private double score;
 
 }

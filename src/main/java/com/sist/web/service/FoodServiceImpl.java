@@ -21,7 +21,6 @@ public class FoodServiceImpl implements FoodService {
 	@Override
 	public ListDataDTO<FoodVO> foodListData(int page) {
 		List<FoodVO> list = mapper.foodListData(getOffSet(page));
-		System.out.println(list.get(0));
 		int totalpage = mapper.foodTotalPage();
 		ListDataDTO<FoodVO> dto = new ListDataDTO<>(list, page, totalpage);
 		setPagination(dto);
