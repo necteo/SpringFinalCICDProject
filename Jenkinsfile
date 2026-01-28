@@ -38,7 +38,7 @@ pipeline {
 				echo 'Docker Run'
 				sh '''
 						docker stop ${CONTAINER_NAME} || true
-						docker rm ${CONTAINER_NAME}
+						docker rm ${CONTAINER_NAME} || true
 						docker run --name ${CONTAINER_NAME} -it -d -p 9090:9090 ${DOCKER_IMAGE}
 					 '''
 			}
