@@ -78,7 +78,7 @@ pipeline {
           sh '''
               mkdir -p ~/.ssh
               # 변수로 넘어온 키 파일 경로($SSH_KEY_PATH)를 사용하여 직접 접속
-              ssh-keyscan -t ed25519 3.234.226.241 >> ~/.ssh/known_hosts
+              ssh-keyscan -t ed25519 ${EC2_HOST} >> ~/.ssh/known_hosts
               chmod 644 ~/.ssh/known_hosts
               
               # 이후 ssh 접속 시 -i 옵션으로 키를 직접 지정해야 합니다.
@@ -89,6 +89,7 @@ pipeline {
 								docker run --name awscicd -it -d -p 9090:9090 ${DOCKER_IMAGE}:{DOCKER_TAG}
 							EOF
 						 '''
+				}
 			}
 		}
 		
