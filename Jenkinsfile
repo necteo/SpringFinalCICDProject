@@ -34,12 +34,14 @@ pipeline {
 		}
 		
 		stage('Docker Run') {
-			echo 'Docker Run'
-			sh '''
-					docker stop ${CONTAINER_NAME} || true
-					docker rm ${CONTAINER_NAME}
-					docker run --name ${CONTAINER_NAME} -it -d -p 9090:9090 ${DOCKER_IMAGE}
-				 '''
+			steps {
+				echo 'Docker Run'
+				sh '''
+						docker stop ${CONTAINER_NAME} || true
+						docker rm ${CONTAINER_NAME}
+						docker run --name ${CONTAINER_NAME} -it -d -p 9090:9090 ${DOCKER_IMAGE}
+					 '''
+			}
 		}
 	}
 	
