@@ -62,8 +62,8 @@ pipeline {
 				sshagent(credentials: ['ec2-ssh-key']) {
 					sh '''
 							ssh-keyscan -t ed25519 ${EC2_HOST} >> ~/.ssh/known_hosts
-							chmod 644 ~/.ssh/known_hosts
-							ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} << 'EOF'
+							
+							ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} << EOF
 								docker stop awscicd || true
 								docker rm awscicd || true
 								docker pull ${DOCKER_IMAGE}:${DOCKER_TAG}
