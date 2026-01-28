@@ -43,7 +43,7 @@ pipeline {
 					usernameVariable: 'DOCKER_ID',
 					passwordVariable: 'DOCKER_PW'
 				)]) {
-					sh "echo ${DOCKER_PW} | docker login -u ${DOCKER_ID} --password-stdin"
+					sh `echo $DOCKER_PW | docker login -u $DOCKER_ID --password-stdin`
 				}
 			}
 		}
@@ -58,7 +58,6 @@ pipeline {
 		stage('Docker Compose Down') {
 			steps {
 				echo 'docker-compose down'
-				sh "cd ~/app"
 				sh "docker compose -f ${COMPOSE_FILE} down || true"
 			}
 		}
