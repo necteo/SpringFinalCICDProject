@@ -51,21 +51,21 @@ pipeline {
 		stage('DockerHub Push') {
 			steps {
 				echo 'DockerHub Push'
-				sh "docker push ${DOCKER_IMAGE}"
+				sh 'docker push ${DOCKER_IMAGE}'
 			}
 		}
 		
 		stage('Docker Compose Down') {
 			steps {
 				echo 'docker-compose down'
-				sh "docker compose -f ${COMPOSE_FILE} down || true"
+				sh 'docker compose -f ${COMPOSE_FILE} down || true'
 			}
 		}
 		
 		stage('Docker Compose Up') {
 			steps {
 				echo 'docker-compose up'
-				sh "docker compose -f ${COMPOSE_FILE} up -d"
+				sh 'docker compose -f ${COMPOSE_FILE} up -d'
 			}
 		}
 		
